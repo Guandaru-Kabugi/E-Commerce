@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <style>
+      body {
+          background-color: transparent;
+      }
+      .navbar-nav .nav-link:hover {
+          font-weight: bold;
+          color: aqua;
+      }
+      .navbar-nav .nav-link {
+          font-size: 20px;
+          color: whitesmoke;
+      }
+      .navbar-brand {
+          font-size: 25px;
+          color: whitesmoke;
+      }
+      .dropdown-item {
+          font-weight: bold;
+          background-color: yellow;
+          color: black;
+      }
+  </style>
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" style="color: whitesmoke;" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {% if user.is_authenticated %}
+                          Hello {{ user }}
+                      {% else %}
+                          Hello, Sign In
+                      {% endif %}
+                  </a>
+                  <ul class="dropdown-menu">
+                      {% if user.is_authenticated %}
+                          <li>
+                              <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                                  {% csrf_token %}
+                                  <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                              </form>
+                          </li>
+                      {% else %}
+                          <li><a class="dropdown-item" href="{% url 'signup' %}">New User, Sign up here</a></li>
+                          <li><a class="dropdown-item" href="{% url 'login' %}">Have an account? Sign in</a></li>
+                      {% endif %}
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+              </li>
+          </ul>
+          <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+      </div>
+  </div>
+</nav>

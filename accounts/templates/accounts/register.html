@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="col-12 col-mid-6 mb-3">
+        <div class="businessname">
+            <div class="text">E-Commerce</div>
+            <div class="logo">
+                <img src="{% static 'images/simplelogo.png' %}" alt="">
+            </div>
+        </div>
+        <div class="container form-container">
+            <style>
+                .form-container {
+                    border: 2px solid white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    background-color: #f0f0f0;
+                    max-width: 500px;
+                    margin-top: 50px;
+                    margin-left: 400px;
+                }
+                .form-container button {
+                    background-color: yellow;
+                    color: black;
+                }
+                .button-move {
+                    display: flex;
+                    justify-content: center;
+                }
+                .businessname {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    font-size: 30px;
+                }
+                .businessname .text {
+                    margin-bottom: 20px;
+                }
+                .businessname img {
+                    width: 10%;
+                    height: auto;
+                }
+                .logo {
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+            </style>
+        <div class="logo">
+            Sign Up Here
+        </div>
+       
+        <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+        
+            {% comment %} <!-- Displaying form errors -->
+            {% if form.errors %}
+                <ul class="errorlist">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %} {% endcomment %}
+            <div class="button-move">
+                <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+            </div>
+        </form>
+    
+        </div>
+    </div>
+</body>
+</html>
