@@ -5,9 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif; /* Added a default font for better readability */
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        
+        .form-container {
+            border: 2px solid white;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            max-width: 500px;
+            margin: 50px auto; /* Centered horizontally */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .form-container button {
+            background-color: yellow;
+            color: black;
+            border: none; /* Removed default border */
+            padding: 10px; /* Added padding for better button size */
+            border-radius: 5px; /* Rounded button edges */
+            cursor: pointer; /* Cursor pointer on hover */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .form-container button:hover {
+            background-color: #e0e000; /* Darker yellow on hover */
+        }
+
+        .button-move {
+            display: flex;
+            justify-content: center;
+        }
+
+        .businessname {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        .businessname .text {
+            margin-bottom: 0; /* Reduced margin between text and logo */
+        }
+
+        .businessname img {
+            width: 10%;
+            height: auto;
+            margin-bottom: 0; /* Added margin to reduce space between logo and form */
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0; /* Removed margin to reduce space */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px; /* Reduced padding for smaller screens */
+                max-width: 90%; /* Set width to 90% for smaller screens */
+                margin-top: 20px; /* Reduced top margin */
+            }
+
+            .businessname {
+                font-size: 24px; /* Reduced font size for smaller screens */
+            }
+
+            .logo {
+                font-size: 24px; /* Reduced font size for logo */
+            }
+
+            .businessname img {
+                width: 20%; /* Increased logo size for smaller screens */
+            }
+
+            .form-container button {
+                font-size: 14px; /* Adjust button text size */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .businessname {
+                font-size: 20px; /* Further reduced font size */
+            }
+
+            .logo {
+                font-size: 20px; /* Further reduced logo font size */
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="col-12 col-mid-6 mb-3">
+    <div class="col-12 col-mid-6 mb-4">
         <div class="businessname">
             <div class="text">E-Commerce</div>
             <div class="logo">
@@ -15,68 +113,27 @@
             </div>
         </div>
         <div class="container form-container">
-            <style>
-                .form-container {
-                    border: 2px solid white;
-                    padding: 20px;
-                    border-radius: 10px;
-                    background-color: #f0f0f0;
-                    max-width: 500px;
-                    margin-top: 50px;
-                    margin-left: 400px;
-                }
-                .form-container button {
-                    background-color: yellow;
-                    color: black;
-                }
-                .button-move {
-                    display: flex;
-                    justify-content: center;
-                }
-                .businessname {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    font-weight: bold;
-                    font-size: 30px;
-                }
-                .businessname .text {
-                    margin-bottom: 20px;
-                }
-                .businessname img {
-                    width: 10%;
-                    height: auto;
-                }
-                .logo {
-                    text-align: center;
-                    font-size: 30px;
-                    font-weight: bold;
-                }
-            </style>
-        <div class="logo">
-            Sign Up Here
-        </div>
+            <div class="logo">Sign Up Here</div>
        
-        <form action="{% url 'signup' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+            <form action="{% url 'signup' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
         
-            {% comment %} <!-- Displaying form errors -->
-            {% if form.errors %}
-                <ul class="errorlist">
-                    {% for field in form %}
-                        {% if field.errors %}
-                            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            {% endif %} {% endcomment %}
-            <div class="button-move">
-                <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
-            </div>
-        </form>
-    
+                {% comment %} <!-- Displaying form errors -->
+                {% if form.errors %}
+                    <ul class="errorlist">
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %} {% endcomment %}
+                
+                <div class="button-move">
+                    <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
