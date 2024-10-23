@@ -18,6 +18,9 @@ load_dotenv()
 DB_HOST = os.getenv('DB_HOST')
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
+MAIL_API = os.getenv('MAIL_GUN_API')
+DEF_FROM_EMAIL_IS = os.getenv('DEFAULT_FROM_EMAIL')
+MAIL_GUN_DOMAIN = os.getenv('MAILGUN_SENDER_DOMAIN')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +140,16 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Email backend
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+
+# Anymail configuration for Mailgun
+ANYMAIL = {
+    "MAILGUN_API_KEY": MAIL_API,
+    "MAILGUN_SENDER_DOMAIN": MAIL_GUN_DOMAIN,  # e.g., 'sandbox12345.mailgun.org'
+}
+
+# From email address
+DEFAULT_FROM_EMAIL = DEF_FROM_EMAIL_IS
+

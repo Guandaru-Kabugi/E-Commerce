@@ -115,20 +115,9 @@
         <div class="container form-container">
             <div class="logo">Sign Up Here</div>
        
-            <form action="{% url 'signup' %}" method="post">
+            <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-        
-                {% comment %} <!-- Displaying form errors -->
-                {% if form.errors %}
-                    <ul class="errorlist">
-                        {% for field in form %}
-                            {% if field.errors %}
-                                <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                {% endif %} {% endcomment %}
                 
                 <div class="button-move">
                     <button type="submit" class="btn btn-primary mt-3">Sign Up</button>

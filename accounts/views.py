@@ -8,16 +8,17 @@ from django.contrib import messages
 def register(request):
     if request.user.is_authenticated:
         return redirect('home')
-    if request.method == 'POST':
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request,user)
-            return redirect('home')
-        messages.error(request,'user with these details exist')
-    form = RegisterUserForm()
-    context = {"form":form} 
-    return render(request,'accounts/register.html',context)   
+    else:
+        if request.method == 'POST':
+            form = RegisterUserForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                login(request,user)
+                return redirect('home')
+        else:
+            form = RegisterUserForm()
+        context = {'form':form}
+        return render(request,'accounts/register.html',context)
 def loginuser(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -38,3 +39,17 @@ def loginuser(request):
 def homepage(request):
     context = {}
     return render(request,'homepage.html',context)
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        if request.method == 'POST':
+            form = RegisterUserForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                login(request,user)
+                return redirect('home')
+        else:
+            form = RegisterUserForm()
+        context = {'form':form}
+        return render(request,'accounts/signup.html',context)
