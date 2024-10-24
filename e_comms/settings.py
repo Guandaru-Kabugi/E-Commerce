@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'anymail',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +154,5 @@ ANYMAIL = {
 # From email address
 DEFAULT_FROM_EMAIL = DEF_FROM_EMAIL_IS
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
