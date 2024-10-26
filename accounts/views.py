@@ -36,9 +36,6 @@ def loginuser(request):
     form = LoginForm()
     context = {"form":form}
     return render(request,'accounts/login.html',context)
-def homepage(request):
-    context = {}
-    return render(request,'homepage.html',context)
 def signup(request):
     if request.user.is_authenticated:
         return redirect('home')
