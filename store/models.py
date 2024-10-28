@@ -25,6 +25,9 @@ class Product(models.Model):
     product_price = models.DecimalField(default=0,max_digits=8,decimal_places=2,verbose_name='Product Price')
     product_quantity = models.PositiveIntegerField(default=0,verbose_name='Product Quantity')
     rating = models.PositiveIntegerField(default=0,verbose_name='Product Rating')
+    #check whether a product is on sale/discount
+    is_sale = models.BooleanField(default=False)
+    sale_price = models.DecimalField(default=0,max_digits=8,decimal_places=2,verbose_name='Product Sale Price')
     # image = models.ImageField(upload_to='uploads/products/')
     def __str__(self):
         return self.product_name
