@@ -30,6 +30,7 @@ def loginuser(request):
             user = authenticate(request,email=email,password=password)
             if user:
                 login(request,user)
+                messages.success(request,("You have been logged in Successfully"))
                 return redirect('home')
             messages.error(request,"No user with provided details")
         messages.error(request,"Errors with form input")
