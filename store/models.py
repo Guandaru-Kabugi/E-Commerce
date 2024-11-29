@@ -16,6 +16,7 @@ class Category(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=100,null=False,unique=False,verbose_name='Product Name')
     product_image = models.URLField(max_length=300,verbose_name='Product URL')
+    product_image_url = models.ImageField(verbose_name='Product Image',upload_to='product_images/',null=True)
     product_description = models.CharField(max_length=300,verbose_name='Product Description')
     product_category = models.ForeignKey(Category,on_delete=models.CASCADE,verbose_name='Product Category')
     slug_field = models.SlugField(verbose_name='slug_field',max_length=100,unique=True, null=True,blank=True)

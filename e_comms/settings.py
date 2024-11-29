@@ -87,12 +87,12 @@ WSGI_APPLICATION = 'e_comms.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "mysql.connector.django",
-        "NAME": "E_Comms_Website",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "e_commerce_db",
         "USER": DB_USER,
         "PASSWORD": DB_PASSWORD,
         "HOST": DB_HOST,
-        "PORT": "3306",
+        "PORT": "5432",
     }
 }
 
